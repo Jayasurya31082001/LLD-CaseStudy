@@ -102,7 +102,8 @@ public class Game {
             System.out.println(currentPlayer.getName()+ " it's your turn");
             displayBoard();
             Move move = currentPlayer.makeMove(board);
-            if (!validateMove(move)) {
+
+            if (move==null || !validateMove(move)) {
                 System.out.println("Invalid move");
                 continue;
             }
@@ -118,6 +119,7 @@ public class Game {
             if(validateWin(move)){
                 setWinner(currentPlayer);
                 setGameState(GameState.WIN);
+                displayBoard();
                 System.out.println(currentPlayer.getName()+ " won the game!!!!!!");
                 return;
             }
@@ -127,6 +129,7 @@ public class Game {
             if(checkDraw()){
                 gameState=GameState.DRAW;
                 System.out.println("Drew the match, No moves left!");
+                displayBoard();
                 return;
             }
             while (true) {
